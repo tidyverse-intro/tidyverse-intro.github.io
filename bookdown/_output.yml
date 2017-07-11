@@ -1,0 +1,13 @@
+bookdown::gitbook:
+#  code_download: true
+#  code_folding: hide
+  df_print: paged
+  css: style.css
+  split_by: "chapter+number"
+  config:
+    toc:
+      before: |
+        <li><a href="./">A gRadual intRoduction to the tidyverse</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/tidyverse-intro/tidyverse-intro.github.io/edit/master/%s

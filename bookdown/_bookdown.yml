@@ -1,0 +1,5 @@
+book_filename: "tidyverse-intro"
+output_dir: ".."
+#language:
+#  ui:
+#    chapter_name: "Chapter "

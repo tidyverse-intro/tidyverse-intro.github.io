@@ -1,0 +1,39 @@
+--- 
+title: "A gRadual intRoduction to the tidyverse"
+author: "Chester Ismay and Ted Laderas"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: tidyverse-intro/tidyverse-intro.github.io
+description: "A gentle introduction to the tidyverse for data wrangling and visualization."
+---
+
+# Prerequisites {-}
+
+### Audience: Beginner to Intermediate R Users {-}
+
+This book replicates the materials developed for a workshop for the [Cascadia-R conference](https://cascadiarconf.com) meant to be a gentle introduction to the tidyverse for data wrangling and visualization. 
+
+### What You'll Learn {-}
+
+[Part 1 - Aesthetics and `ggplot2`](#ggplot2)
+
+[Part 2 - Factors and `ggplot2`](#factors)
+
+[Part 3 - Manipulating Data using `dplyr`](#dplyr)
+
+[Part 4 - The Whys and Hows of Tidy Data using `tidyr`](#tidy)
+
+[Part 5 - More on factors with `forcats`](#factors2)
+
+### Before We Get Started {-}
+
+Before continuing, please make sure that R and RStudio are installed on your laptop. (You should have version 3.3 or higher for R and version 1.0 or higher of RStudio.)  Then install the `tidyverse`, `gapminder`, `fivethirtyeight`, and `rmarkdown` packages from CRAN using the following command:
+
+```
+install.packages(c("tidyverse", "gapminder", "fivethirtyeight", "rmarkdown"))
+```

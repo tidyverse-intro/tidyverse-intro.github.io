@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A gRadual intRoduction to the tidyverse</title>
+  <meta name="description" content="A gentle introduction to the tidyverse for data wrangling and visualization.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A gRadual intRoduction to the tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A gentle introduction to the tidyverse for data wrangling and visualization." />
+  <meta name="github-repo" content="tidyverse-intro/tidyverse-intro.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A gRadual intRoduction to the tidyverse" />
+  
+  <meta name="twitter:description" content="A gentle introduction to the tidyverse for data wrangling and visualization." />
+  
+
+<meta name="author" content="Chester Ismay and Ted Laderas">
+
+
+<meta name="date" content="2017-07-11">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="1-ggplot2.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A gRadual intRoduction to the tidyverse</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prerequisites</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#audience-beginner-to-intermediate-r-users"><i class="fa fa-check"></i>Audience: Beginner to Intermediate R Users</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-youll-learn"><i class="fa fa-check"></i>What You’ll Learn</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#before-we-get-started"><i class="fa fa-check"></i>Before We Get Started</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-ggplot2.html"><a href="1-ggplot2.html"><i class="fa fa-check"></i><b>1</b> The gRammar of gRaphics with ggplot2</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-ggplot2.html"><a href="1-ggplot2.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>1.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="1.2" data-path="1-ggplot2.html"><a href="1-ggplot2.html#back-to-basics"><i class="fa fa-check"></i><b>1.2</b> Back to basics</a></li>
+<li class="chapter" data-level="1.3" data-path="1-ggplot2.html"><a href="1-ggplot2.html#your-task"><i class="fa fa-check"></i><b>1.3</b> Your Task</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-factors.html"><a href="2-factors.html"><i class="fa fa-check"></i><b>2</b> Working with Factors/Categorical Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-factors.html"><a href="2-factors.html#reviewing-factors"><i class="fa fa-check"></i><b>2.1</b> Reviewing Factors</a></li>
+<li class="chapter" data-level="2.2" data-path="2-factors.html"><a href="2-factors.html#a-basic-barplot-using-geom_bar"><i class="fa fa-check"></i><b>2.2</b> A Basic Barplot using <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="2.3" data-path="2-factors.html"><a href="2-factors.html#faceting"><i class="fa fa-check"></i><b>2.3</b> Faceting</a></li>
+<li class="chapter" data-level="2.4" data-path="2-factors.html"><a href="2-factors.html#stacked-bars"><i class="fa fa-check"></i><b>2.4</b> Stacked Bars</a></li>
+<li class="chapter" data-level="2.5" data-path="2-factors.html"><a href="2-factors.html#proportional-barchart"><i class="fa fa-check"></i><b>2.5</b> Proportional Barchart</a></li>
+<li class="chapter" data-level="2.6" data-path="2-factors.html"><a href="2-factors.html#dodge-those-bars"><i class="fa fa-check"></i><b>2.6</b> Dodge those bars!</a></li>
+<li class="chapter" data-level="2.7" data-path="2-factors.html"><a href="2-factors.html#your-task-bar-charts"><i class="fa fa-check"></i><b>2.7</b> Your Task: Bar Charts</a></li>
+<li class="chapter" data-level="2.8" data-path="2-factors.html"><a href="2-factors.html#boxplots"><i class="fa fa-check"></i><b>2.8</b> Boxplots</a></li>
+<li class="chapter" data-level="2.9" data-path="2-factors.html"><a href="2-factors.html#violin-plots"><i class="fa fa-check"></i><b>2.9</b> Violin Plots</a></li>
+<li class="chapter" data-level="2.10" data-path="2-factors.html"><a href="2-factors.html#your-task-how-heavy-are-our-pets"><i class="fa fa-check"></i><b>2.10</b> Your task: How heavy are our pets?</a></li>
+<li class="chapter" data-level="2.11" data-path="2-factors.html"><a href="2-factors.html#what-you-learned-in-this-section"><i class="fa fa-check"></i><b>2.11</b> What you learned in this section</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-dplyr.html"><a href="3-dplyr.html"><i class="fa fa-check"></i><b>3</b> Intro to dplyr</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-dplyr.html"><a href="3-dplyr.html#the-pipe"><i class="fa fa-check"></i><b>3.1</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="3.2" data-path="3-dplyr.html"><a href="3-dplyr.html#the-five-main-verbs-5mv-of-data-wrangling"><i class="fa fa-check"></i><b>3.2</b> The Five Main Verbs (5MV) of data wrangling</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-dplyr.html"><a href="3-dplyr.html#filter"><i class="fa fa-check"></i><b>3.2.1</b> <code>filter()</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-dplyr.html"><a href="3-dplyr.html#logical-operators"><i class="fa fa-check"></i><b>3.2.2</b> Logical operators</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-dplyr.html"><a href="3-dplyr.html#summarize"><i class="fa fa-check"></i><b>3.2.3</b> <code>summarize()</code></a></li>
+<li class="chapter" data-level="3.2.4" data-path="3-dplyr.html"><a href="3-dplyr.html#combining-summarize-with-group_by"><i class="fa fa-check"></i><b>3.2.4</b> Combining <code>summarize()</code> with <code>group_by()</code></a></li>
+<li class="chapter" data-level="3.2.5" data-path="3-dplyr.html"><a href="3-dplyr.html#without-the"><i class="fa fa-check"></i><b>3.2.5</b> Without the <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-dplyr.html"><a href="3-dplyr.html#mutate"><i class="fa fa-check"></i><b>3.3</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="3-dplyr.html"><a href="3-dplyr.html#mutate-1"><i class="fa fa-check"></i><b>3.4</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.5" data-path="3-dplyr.html"><a href="3-dplyr.html#arrange"><i class="fa fa-check"></i><b>3.5</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="3-dplyr.html"><a href="3-dplyr.html#other-useful-dplyr-verbs"><i class="fa fa-check"></i><b>3.6</b> Other useful <code>dplyr</code> verbs</a></li>
+<li class="chapter" data-level="3.7" data-path="3-dplyr.html"><a href="3-dplyr.html#your-task-1"><i class="fa fa-check"></i><b>3.7</b> Your Task</a></li>
+<li class="chapter" data-level="3.8" data-path="3-dplyr.html"><a href="3-dplyr.html#your-tasks-challenge"><i class="fa fa-check"></i><b>3.8</b> Your Tasks (Challenge)</a></li>
+<li class="chapter" data-level="3.9" data-path="3-dplyr.html"><a href="3-dplyr.html#your-task-2"><i class="fa fa-check"></i><b>3.9</b> Your Task</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-tidy.html"><a href="4-tidy.html"><i class="fa fa-check"></i><b>4</b> Tidy Data: Why and How</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-tidy.html"><a href="4-tidy.html#what-is-tidy-data"><i class="fa fa-check"></i><b>4.1</b> What is Tidy Data?</a></li>
+<li class="chapter" data-level="4.2" data-path="4-tidy.html"><a href="4-tidy.html#why-tidy-data"><i class="fa fa-check"></i><b>4.2</b> Why Tidy Data?</a></li>
+<li class="chapter" data-level="4.3" data-path="4-tidy.html"><a href="4-tidy.html#beware-of-columns-masquerading-as-variables"><i class="fa fa-check"></i><b>4.3</b> Beware of columns masquerading as variables!</a></li>
+<li class="chapter" data-level="4.4" data-path="4-tidy.html"><a href="4-tidy.html#making-data-tidy-gather"><i class="fa fa-check"></i><b>4.4</b> Making data tidy: <code>gather()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="4-tidy.html"><a href="4-tidy.html#your-task-using-tidy-data"><i class="fa fa-check"></i><b>4.5</b> Your Task: using tidy data</a></li>
+<li class="chapter" data-level="4.6" data-path="4-tidy.html"><a href="4-tidy.html#making-one-column-into-many-spread"><i class="fa fa-check"></i><b>4.6</b> Making one column into many: <code>spread()</code></a></li>
+<li class="chapter" data-level="4.7" data-path="4-tidy.html"><a href="4-tidy.html#your-task---who-is-the-most-democratic"><i class="fa fa-check"></i><b>4.7</b> Your Task - Who is the most democratic?</a></li>
+<li class="chapter" data-level="4.8" data-path="4-tidy.html"><a href="4-tidy.html#challenge---if-that-was-too-easy"><i class="fa fa-check"></i><b>4.8</b> Challenge - if that was too easy…</a></li>
+<li class="chapter" data-level="4.9" data-path="4-tidy.html"><a href="4-tidy.html#make-it-look-like-this"><i class="fa fa-check"></i><b>4.9</b> Make it look like this:</a></li>
+<li class="chapter" data-level="4.10" data-path="4-tidy.html"><a href="4-tidy.html#some-hints-on-the-challenge"><i class="fa fa-check"></i><b>4.10</b> Some Hints on the Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-factors2.html"><a href="5-factors2.html"><i class="fa fa-check"></i><b>5</b> More on Factors</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-factors2.html"><a href="5-factors2.html#more-on-manipulating-factors"><i class="fa fa-check"></i><b>5.1</b> More on manipulating factors</a></li>
+<li class="chapter" data-level="5.2" data-path="5-factors2.html"><a href="5-factors2.html#lets-build-a-bar-plot-of-weights"><i class="fa fa-check"></i><b>5.2</b> Let’s build a bar plot of weights</a></li>
+<li class="chapter" data-level="5.3" data-path="5-factors2.html"><a href="5-factors2.html#sort-by-another-variable-intermediate"><i class="fa fa-check"></i><b>5.3</b> Sort by another variable (intermediate)</a></li>
+<li class="chapter" data-level="5.4" data-path="5-factors2.html"><a href="5-factors2.html#plot-in-reverse-alphabetical-order"><i class="fa fa-check"></i><b>5.4</b> Plot in Reverse Alphabetical Order</a></li>
+<li class="chapter" data-level="5.5" data-path="5-factors2.html"><a href="5-factors2.html#sort-by-frequency"><i class="fa fa-check"></i><b>5.5</b> Sort by frequency</a></li>
+<li class="chapter" data-level="5.6" data-path="5-factors2.html"><a href="5-factors2.html#recode-levels-of-a-factor"><i class="fa fa-check"></i><b>5.6</b> Recode levels of a factor</a></li>
+<li class="chapter" data-level="5.7" data-path="5-factors2.html"><a href="5-factors2.html#group-levels-of-a-factor-together"><i class="fa fa-check"></i><b>5.7</b> Group levels of a factor together</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="5-factors2.html"><a href="5-factors2.html#forcats-does-way-more"><i class="fa fa-check"></i><b>5.7.1</b> <code>forcats</code> does way more!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-conclusion.html"><a href="6-conclusion.html"><i class="fa fa-check"></i><b>6</b> What’s Next?</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-conclusion.html"><a href="6-conclusion.html#keep-in-touch"><i class="fa fa-check"></i><b>6.1</b> Keep in Touch!</a></li>
+<li class="chapter" data-level="6.2" data-path="6-conclusion.html"><a href="6-conclusion.html#give-us-feedback"><i class="fa fa-check"></i><b>6.2</b> Give us Feedback!</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A gRadual intRoduction to the tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">A gRadual intRoduction to the tidyverse</h1>
+<h4 class="author"><em>Chester Ismay and Ted Laderas</em></h4>
+<h4 class="date"><em>2017-07-11</em></h4>
+</div>
+<div id="prerequisites" class="section level1 unnumbered">
+<h1>Prerequisites</h1>
+<div id="audience-beginner-to-intermediate-r-users" class="section level3 unnumbered">
+<h3>Audience: Beginner to Intermediate R Users</h3>
+<p>This book replicates the materials developed for a workshop for the <a href="https://cascadiarconf.com">Cascadia-R conference</a> meant to be a gentle introduction to the tidyverse for data wrangling and visualization.</p>
+</div>
+<div id="what-youll-learn" class="section level3 unnumbered">
+<h3>What You’ll Learn</h3>
+<p><a href="1-ggplot2.html#ggplot2">Part 1 - Aesthetics and <code>ggplot2</code></a></p>
+<p><a href="2-factors.html#factors">Part 2 - Factors and <code>ggplot2</code></a></p>
+<p><a href="3-dplyr.html#dplyr">Part 3 - Manipulating Data using <code>dplyr</code></a></p>
+<p><a href="4-tidy.html#tidy">Part 4 - The Whys and Hows of Tidy Data using <code>tidyr</code></a></p>
+<p><a href="5-factors2.html#factors2">Part 5 - More on factors with <code>forcats</code></a></p>
+</div>
+<div id="before-we-get-started" class="section level3 unnumbered">
+<h3>Before We Get Started</h3>
+<p>Before continuing, please make sure that R and RStudio are installed on your laptop. (You should have version 3.3 or higher for R and version 1.0 or higher of RStudio.) Then install the <code>tidyverse</code>, <code>gapminder</code>, <code>fivethirtyeight</code>, and <code>rmarkdown</code> packages from CRAN using the following command:</p>
+<pre><code>install.packages(c(&quot;tidyverse&quot;, &quot;gapminder&quot;, &quot;fivethirtyeight&quot;, &quot;rmarkdown&quot;))</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="1-ggplot2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tidyverse-intro/tidyverse-intro.github.io/edit/master/index.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
