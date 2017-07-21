@@ -111,9 +111,78 @@ Recreate the gapminder plot shown at the beginning of this workshop (and below) 
 
 ![](figure/gap.png)
 
-```{r tut=TRUE}
+```{r ex="gap_ggplot", type="sample-code", tut=TRUE}
 library(gapminder)
+library(dplyr)
+library(ggplot2)
 gap1992 <- gapminder %>% filter(year == 1992)
 
 #Space for your answer here.
+```
+
+```{r ex="gap_ggplot", type="solution", tut=TRUE}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+gap1992 <- gapminder %>% filter(year == 1992)
+ggplot(data = gap1992,
+       mapping = aes(x = log(gdpPercap, base = 10), 
+                     y = lifeExp, 
+                     color = continent,
+                     size = pop)) +
+  geom_point() + 
+  xlab("Gross Domestic Product (log scale)") + 
+  ylab("Life Expectancy at birth (years)") + 
+  ggtitle("Gapminder for 1992")
+```
+
+```{r ex="gap_ggplot", type="sct", tut=TRUE}
+#devtools::install_github("datacamp/testwhat")
+test_library_function("gapminder")
+test_library_function("dplyr")
+test_library_function("ggplot2")
+test_object("gap1992")
+test_or({
+  # match original solution
+  ggplot_fun <- ex() %>% check_function("ggplot")
+  ggplot_fun %>% check_arg("data") %>% check_equal(eval = FALSE)
+  ggplot_fun %>% check_arg("mapping")
+  aes_fun <- ex() %>% check_function("aes")
+  aes_fun %>% check_arg("x") %>% check_equal(eval = FALSE)
+  aes_fun %>% check_arg("y") %>% check_equal(eval = FALSE)
+  aes_fun %>% check_arg("color") %>% check_equal(eval = FALSE)
+  aes_fun %>% check_arg("size") %>% check_equal(eval = FALSE)
+  ex() %>% check_function("geom_point")
+  ex() %>% check_function("xlab")
+  ex() %>% check_function("ylab")
+  ex() %>% check_function("ggtitle")
+}, {
+  # match alt solution:
+  sol_alt_code <- 'ggplot(data = gap1992,
+       mapping = aes(x = log(gdpPercap, base = 10),
+                     y = lifeExp)) +
+  geom_point(mapping = aes(color = continent,
+                     size = pop)) +
+  xlab("Gross Domestic Product (log scale)") +
+  ylab("Life Expectancy at birth (years)") +
+  ggtitle("Gapminder for 1992")'
+  alt_ex <- ex() %>% override_solution(sol_alt_code)
+
+  ggplot_fun <- alt_ex %>% check_function("ggplot")
+  ggplot_fun %>% check_arg("data") %>% check_equal(eval = FALSE)
+  ggplot_fun %>% check_arg("mapping")
+  aes_fun <- alt_ex %>% check_function("aes")
+  aes_fun %>% check_arg("x") %>% check_equal(eval = FALSE)
+  aes_fun %>% check_arg("y") %>% check_equal(eval = FALSE)
+  geom_point_fun <- alt_ex %>% check_function("geom_point")
+  geom_point_fun %>% check_arg("mapping")
+  alt_ex %>% check_function("aes", index = 2) %>% check_arg("color") %>% check_equal(eval = FALSE)
+  alt_ex %>% check_function("aes", index = 2) %>% check_arg("size") %>% check_equal(eval = FALSE)
+  alt_ex %>% check_function("xlab")
+  alt_ex %>% check_function("ylab")
+  alt_ex %>% check_function("ggtitle")
+})
+# For some reason, the success message isn't appearing?
+success_msg("Nice! Your code produces the plot shown.")
+test_error()
 ```

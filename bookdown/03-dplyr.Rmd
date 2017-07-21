@@ -183,13 +183,29 @@ gapminder %>%
 
 ## Your Task
 
-Determine which African country had the highest GDP per capita in 1982 using the `gapminder` data in the `gapminder` package.
+Determine which African country had the highest GDP per capita in 1982 using the `gapminder` data in the `gapminder` package. Store your answer as one row including all six of the variables in `gapminder`.  Give the name of `top_africa` to this resulting data 1 x 6 data frame.
 
-```{r tut=TRUE}
-#Space for your answer here.
+```{r ex="gdp", type="sample-code", tut=TRUE}
+library(gapminder)
+library(dplyr)
+
 ```
 
---
+```{r ex="gdp", type="solution", tut=TRUE}
+library(gapminder)
+library(dplyr)
+top_africa <- gapminder %>%
+  filter(year == 1982) %>%
+  filter(continent == "Africa") %>%
+  filter(gdpPercap == max(gdpPercap))
+```
+
+```{r ex="gdp", type="sct", tut=TRUE}
+test_library_function("gapminder")
+test_library_function("dplyr")
+test_object("top_africa")
+test_error()
+```
 
 ## Your Tasks (Challenge)
 

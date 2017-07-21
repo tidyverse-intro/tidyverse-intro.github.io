@@ -25,7 +25,7 @@
 <meta name="author" content="Chester Ismay and Ted Laderas">
 
 
-<meta name="date" content="2017-07-11">
+<meta name="date" content="2017-07-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -223,7 +223,7 @@ pets</code></pre></div>
 <p>Given this dataset, we might want to ask how many pets have the same name. What is the most popular name?</p>
 <p>Try mapping another variable to <code>fill</code> (try both <code>weight</code> and <code>animal</code>). Are the results what you expected?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> pets, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>name)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-11-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-13-1.png" width="\textwidth" /></p>
 </div>
 <div id="faceting" class="section level2">
 <h2><span class="header-section-number">2.3</span> Faceting</h2>
@@ -234,14 +234,14 @@ pets</code></pre></div>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="op">~</span>shotsCurrent) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span>## we make the x axis x angled for better legibility
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>))</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-12-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-14-1.png" width="\textwidth" /></p>
 <p>You might notice that there are blank spots for the categories in each facet. We can restrict the factors in each by using <code>scale=&quot;free_x&quot;</code> argument in <code>facet_wrap()</code>.</p>
 <p>How many animals named “Morris” did not receive shots?</p>
 <p>What happens when you replace the <code>scale</code> argument with “free_y”?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> name)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> <span class="op">~</span>shotsCurrent, <span class="dt">scale =</span> <span class="st">&quot;free_x&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>))</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-13-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-15-1.png" width="\textwidth" /></p>
 </div>
 <div id="stacked-bars" class="section level2">
 <h2><span class="header-section-number">2.4</span> Stacked Bars</h2>
@@ -249,7 +249,7 @@ pets</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#we map color (the outline of the plot) to black to make it look prettier</span>
 <span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> animal, <span class="dt">fill =</span> shotsCurrent)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-14-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-16-1.png" width="\textwidth" /></p>
 </div>
 <div id="proportional-barchart" class="section level2">
 <h2><span class="header-section-number">2.5</span> Proportional Barchart</h2>
@@ -257,48 +257,47 @@ pets</code></pre></div>
 <p>What percent of dogs did not receive shots?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> animal, <span class="dt">fill =</span> shotsCurrent)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-15-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-17-1.png" width="\textwidth" /></p>
 </div>
 <div id="dodge-those-bars" class="section level2">
 <h2><span class="header-section-number">2.6</span> Dodge those bars!</h2>
 <p>Instead of stacking, we can also dodge the bars (move the bars so they’re beside each other).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> animal, <span class="dt">fill =</span> shotsCurrent)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-16-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-18-1.png" width="\textwidth" /></p>
 </div>
 <div id="your-task-bar-charts" class="section level2">
 <h2><span class="header-section-number">2.7</span> Your Task: Bar Charts</h2>
 <p>Given the <code>pets</code> <code>data.frame</code>, plot a stacked proportional barchart that shows the age category counts by animal type. Is the proportion of animals receiving shots the same across each age category?</p>
 <p>Hints: think about what to map to <code>x</code>, and what to map to <code>fill</code>.</p>
 <div data-datacamp-exercise="" data-height="300" data-encoded="true">
-eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjU3BhY2UgZm9yIHlvdXIgYW5zd2VyIGhlcmUuIn0=
+eyJsYW5ndWFnZSI6InIiLCJwcmVfZXhlcmNpc2VfY29kZSI6InBldHMgPC0gZGF0YS5mcmFtZShpZCA9IGMoJ0MxJywnQzInLCdEMScsJ0Q0JywnRDgnLCAnQzQnLCAnRDUnLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICdDMTAnLCBcIkc0XCIsIFwiQzExXCIsIFwiRDlcIiwgXCJDNlwiKSxcbiAgICAgICAgICAgICAgICAgICBuYW1lID0gZmFjdG9yKGMoXCJNb3JyaXNcIiwgXCJNb3JyaXNcIiwgXCJGaWRvXCIsIFwiTXIgQm93c2VyXCIsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJGaWRvXCIsIFwiTGFkeSBTaGViYVwiLCBcIkh1YmVydFwiLCBcIkFwcGxlc1wiLCBcIk5pYmJsZXNcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiTW9ycmlzXCIsIFwiV2lua3lcIiwgXCJGaWRvXCIpKSxcbiAgICAgICAgICAgICAgICAgICAjI3dlaWdodCBpcyBpbiBwb3VuZHNcbiAgICAgICAgICAgICAgICAgICB3ZWlnaHQgPSBjKDYsIDcsIDE1LCAyMCwgNDAsIDEwLCA2MCwgMTcsIDAuMiwgMTAsIDExLCA2KSxcbiAgICAgICAgICAgICAgICAgICBhbmltYWwgPSBmYWN0b3IoYyhcImNhdFwiLCBcImNhdFwiLCBcImRvZ1wiLCBcImRvZ1wiLCBcImRvZ1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJjYXRcIiwgXCJkb2dcIiwgXCJjYXRcIiwgXCJnZXJiaWxcIiwgXCJjYXRcIiwgXCJkb2dcIiwgXCJjYXRcIikpLFxuICAgICAgICAgICAgICAgICAgICMjYmVjYXVzZSBpdCdzIGFuIG9yZGVyZWQgY2F0ZWdvcnksIHdlIGhhdmUgdG8gc3BlY2lmeSBcbiAgICAgICAgICAgICAgICAgICAjI29yZGVyIGFzIHRoZSBsZXZlbHMgYXJndW1lbnRcbiAgICAgICAgICAgICAgICAgICBhZ2VDYXRlZ29yeSA9IG9yZGVyZWQoYyhcIjAtMlwiLCBcIjUtOFwiLCBcIjUtOFwiLCBcIjMtNFwiLCBcIjMtNFwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiNS04XCIsIFwiMC0yXCIsIFwiNS04XCIsIFwiMC0yXCIsXCI1LThcIiwgXCIzLTRcIiwgXCI1LThcIiksIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxldmVscyA9IGMoXCIwLTJcIiwgXCIzLTRcIiwgXCI1LThcIikpLFxuICAgICAgICAgICAgICAgICAgIHNob3RzQ3VycmVudCA9IGMoXCJOb1wiLCBcIlllc1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJZZXNcIiwgXCJOb1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIk5vXCIsIFwiWWVzXCIsIE5BLCBcIk5vXCIsIFwiTm9cIiwgXCJZZXNcIikpIiwic2FtcGxlIjoibGlicmFyeShnZ3Bsb3QyKVxuXG4jU3BhY2UgZm9yIHlvdXIgYW5zd2VyIGhlcmUuIiwic29sdXRpb24iOiJsaWJyYXJ5KGdncGxvdDIpXG5nZ3Bsb3QoZGF0YSA9IHBldHMsIFxuICAgICAgIG1hcHBpbmcgPSBhZXMoeCA9IGFnZUNhdGVnb3J5LCBmaWxsID0gYW5pbWFsKSkgK1xuICBnZW9tX2Jhcihwb3NpdGlvbiA9IFwiZmlsbFwiKSIsInNjdCI6InRlc3RfbGlicmFyeV9mdW5jdGlvbihcImdncGxvdDJcIilcbnRlc3RfZ2dwbG90KGNoZWNrX2RhdGEgPSBUUlVFLCBjaGVja19hZXMgPSBUUlVFLCBjaGVja19nZW9tID0gVFJVRSlcbnN1Y2Nlc3NfbXNnKFwiTmljZSFcIilcbnRlc3RfZXJyb3IoKSJ9
 </div>
+<p><strong>Intermediate Folks: facet this plot by </strong> <code>shotsCurrent</code> <strong>using</strong> <code>facet_wrap</code>.</p>
 <div data-datacamp-exercise="" data-height="300" data-encoded="true">
-eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjSW50ZXJtZWRpYXRlIEZvbGtzOiBmYWNldCB0aGlzIHBsb3QgYnkgYHNob3RzQ3VycmVudGAuIFxuXG4jU3BhY2UgZm9yIHlvdXIgYW5zd2VyIGhlcmUuIn0=
+eyJsYW5ndWFnZSI6InIiLCJwcmVfZXhlcmNpc2VfY29kZSI6InBldHMgPC0gZGF0YS5mcmFtZShpZCA9IGMoJ0MxJywnQzInLCdEMScsJ0Q0JywnRDgnLCAnQzQnLCAnRDUnLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICdDMTAnLCBcIkc0XCIsIFwiQzExXCIsIFwiRDlcIiwgXCJDNlwiKSxcbiAgICAgICAgICAgICAgICAgICBuYW1lID0gZmFjdG9yKGMoXCJNb3JyaXNcIiwgXCJNb3JyaXNcIiwgXCJGaWRvXCIsIFwiTXIgQm93c2VyXCIsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJGaWRvXCIsIFwiTGFkeSBTaGViYVwiLCBcIkh1YmVydFwiLCBcIkFwcGxlc1wiLCBcIk5pYmJsZXNcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiTW9ycmlzXCIsIFwiV2lua3lcIiwgXCJGaWRvXCIpKSxcbiAgICAgICAgICAgICAgICAgICAjI3dlaWdodCBpcyBpbiBwb3VuZHNcbiAgICAgICAgICAgICAgICAgICB3ZWlnaHQgPSBjKDYsIDcsIDE1LCAyMCwgNDAsIDEwLCA2MCwgMTcsIDAuMiwgMTAsIDExLCA2KSxcbiAgICAgICAgICAgICAgICAgICBhbmltYWwgPSBmYWN0b3IoYyhcImNhdFwiLCBcImNhdFwiLCBcImRvZ1wiLCBcImRvZ1wiLCBcImRvZ1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJjYXRcIiwgXCJkb2dcIiwgXCJjYXRcIiwgXCJnZXJiaWxcIiwgXCJjYXRcIiwgXCJkb2dcIiwgXCJjYXRcIikpLFxuICAgICAgICAgICAgICAgICAgICMjYmVjYXVzZSBpdCdzIGFuIG9yZGVyZWQgY2F0ZWdvcnksIHdlIGhhdmUgdG8gc3BlY2lmeSBcbiAgICAgICAgICAgICAgICAgICAjI29yZGVyIGFzIHRoZSBsZXZlbHMgYXJndW1lbnRcbiAgICAgICAgICAgICAgICAgICBhZ2VDYXRlZ29yeSA9IG9yZGVyZWQoYyhcIjAtMlwiLCBcIjUtOFwiLCBcIjUtOFwiLCBcIjMtNFwiLCBcIjMtNFwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiNS04XCIsIFwiMC0yXCIsIFwiNS04XCIsIFwiMC0yXCIsXCI1LThcIiwgXCIzLTRcIiwgXCI1LThcIiksIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxldmVscyA9IGMoXCIwLTJcIiwgXCIzLTRcIiwgXCI1LThcIikpLFxuICAgICAgICAgICAgICAgICAgIHNob3RzQ3VycmVudCA9IGMoXCJOb1wiLCBcIlllc1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJZZXNcIiwgXCJOb1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIk5vXCIsIFwiWWVzXCIsIE5BLCBcIk5vXCIsIFwiTm9cIiwgXCJZZXNcIikpIiwic2FtcGxlIjoibGlicmFyeShnZ3Bsb3QyKVxuXG4jU3BhY2UgZm9yIHlvdXIgYW5zd2VyIGhlcmUuIiwic29sdXRpb24iOiJsaWJyYXJ5KGdncGxvdDIpXG5nZ3Bsb3QoZGF0YSA9IHBldHMsIFxuICAgICAgIG1hcHBpbmcgPSBhZXMoeCA9IGFnZUNhdGVnb3J5LCBmaWxsID0gYW5pbWFsKSkgK1xuICBnZW9tX2Jhcihwb3NpdGlvbiA9IFwiZmlsbFwiKSArXG4gIGZhY2V0X3dyYXAoZmFjZXRzID0gfnNob3RzQ3VycmVudCkiLCJzY3QiOiJ0ZXN0X2xpYnJhcnlfZnVuY3Rpb24oXCJnZ3Bsb3QyXCIpXG50ZXN0X2dncGxvdChjaGVja19kYXRhID0gVFJVRSwgY2hlY2tfZmFjZXQgPSBUUlVFLCBjaGVja19hZXMgPSBUUlVFLCBcbiAgICAgICAgICAgIGZhY2V0X2ZhaWxfbXNnID0gXCJZb3UgZGlkbid0IG1hcCB0aGUgY29ycmVjdCBmYWNldC4gVHJ5IGFnYWluLlwiLCBcbiAgICAgICAgICAgIGFlc19mYWlsX21zZyA9IFwiTm90IHRoZSBjb3JyZWN0IGZpbGwgYWVzdGhldGljLiBUcnkgYWdhaW4uXCIpXG5zdWNjZXNzX21zZyhcIk5pY2UhXCIpXG50ZXN0X2Vycm9yKCkifQ==
 </div>
 </div>
 <div id="boxplots" class="section level2">
 <h2><span class="header-section-number">2.8</span> Boxplots</h2>
 <p>Boxplots allow us to assess distributions of a continuous variable conditioned on categorical variables.</p>
 <p>What does this tell us?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> shotsCurrent, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-19-1.png" width="\textwidth" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> shotsCurrent, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-27-1.png" width="\textwidth" /></p>
 </div>
 <div id="violin-plots" class="section level2">
 <h2><span class="header-section-number">2.9</span> Violin Plots</h2>
 <p>Violin plots are another useful way to visualize the data. They provide a more nuanced look at the data. They’re a density plot that’s mirrored around the y-axis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> ageCategory, <span class="dt">y =</span> weight, <span class="dt">fill =</span> ageCategory)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_violin</span>()</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-20-1.png" width="\textwidth" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(pets, <span class="kw">aes</span>(<span class="dt">x =</span> ageCategory, <span class="dt">y =</span> weight, <span class="dt">fill =</span> ageCategory)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_violin</span>()</code></pre></div>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-28-1.png" width="\textwidth" /></p>
 </div>
 <div id="your-task-how-heavy-are-our-pets" class="section level2">
 <h2><span class="header-section-number">2.10</span> Your task: How heavy are our pets?</h2>
-<p>Visualize <code>weight</code> by <code>animal</code> type as both a boxplot and a violin plot. What do you conclude? Which kind of animal weighs more on average than the other?</p>
+<p>Visualize <code>weight</code> by <code>animal</code> type as both a boxplot and a violin plot on the same plot. What do you conclude? Which kind of animal weighs more on average than the other?</p>
 <div data-datacamp-exercise="" data-height="300" data-encoded="true">
-eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjI1NwYWNlIGZvciB5b3VyIGFuc3dlciBoZXJlIn0=
-</div>
-<p>Intermediate challenge: How would we plot both boxplots and a violin plot on the same graph?</p>
-<div data-datacamp-exercise="" data-height="300" data-encoded="true">
-eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjI1NwYWNlIGZvciB5b3VyIGFuc3dlciBoZXJlIn0=
+eyJsYW5ndWFnZSI6InIiLCJwcmVfZXhlcmNpc2VfY29kZSI6InBldHMgPC0gZGF0YS5mcmFtZShpZCA9IGMoJ0MxJywnQzInLCdEMScsJ0Q0JywnRDgnLCAnQzQnLCAnRDUnLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICdDMTAnLCBcIkc0XCIsIFwiQzExXCIsIFwiRDlcIiwgXCJDNlwiKSxcbiAgICAgICAgICAgICAgICAgICBuYW1lID0gZmFjdG9yKGMoXCJNb3JyaXNcIiwgXCJNb3JyaXNcIiwgXCJGaWRvXCIsIFwiTXIgQm93c2VyXCIsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJGaWRvXCIsIFwiTGFkeSBTaGViYVwiLCBcIkh1YmVydFwiLCBcIkFwcGxlc1wiLCBcIk5pYmJsZXNcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiTW9ycmlzXCIsIFwiV2lua3lcIiwgXCJGaWRvXCIpKSxcbiAgICAgICAgICAgICAgICAgICAjI3dlaWdodCBpcyBpbiBwb3VuZHNcbiAgICAgICAgICAgICAgICAgICB3ZWlnaHQgPSBjKDYsIDcsIDE1LCAyMCwgNDAsIDEwLCA2MCwgMTcsIDAuMiwgMTAsIDExLCA2KSxcbiAgICAgICAgICAgICAgICAgICBhbmltYWwgPSBmYWN0b3IoYyhcImNhdFwiLCBcImNhdFwiLCBcImRvZ1wiLCBcImRvZ1wiLCBcImRvZ1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJjYXRcIiwgXCJkb2dcIiwgXCJjYXRcIiwgXCJnZXJiaWxcIiwgXCJjYXRcIiwgXCJkb2dcIiwgXCJjYXRcIikpLFxuICAgICAgICAgICAgICAgICAgICMjYmVjYXVzZSBpdCdzIGFuIG9yZGVyZWQgY2F0ZWdvcnksIHdlIGhhdmUgdG8gc3BlY2lmeSBcbiAgICAgICAgICAgICAgICAgICAjI29yZGVyIGFzIHRoZSBsZXZlbHMgYXJndW1lbnRcbiAgICAgICAgICAgICAgICAgICBhZ2VDYXRlZ29yeSA9IG9yZGVyZWQoYyhcIjAtMlwiLCBcIjUtOFwiLCBcIjUtOFwiLCBcIjMtNFwiLCBcIjMtNFwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiNS04XCIsIFwiMC0yXCIsIFwiNS04XCIsIFwiMC0yXCIsXCI1LThcIiwgXCIzLTRcIiwgXCI1LThcIiksIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxldmVscyA9IGMoXCIwLTJcIiwgXCIzLTRcIiwgXCI1LThcIikpLFxuICAgICAgICAgICAgICAgICAgIHNob3RzQ3VycmVudCA9IGMoXCJOb1wiLCBcIlllc1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJZZXNcIiwgXCJOb1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcIk5vXCIsIFwiWWVzXCIsIE5BLCBcIk5vXCIsIFwiTm9cIiwgXCJZZXNcIikpIiwic2FtcGxlIjoibGlicmFyeShnZ3Bsb3QyKSIsInNvbHV0aW9uIjoibGlicmFyeShnZ3Bsb3QyKVxuZ2dwbG90KGRhdGEgPSBwZXRzLCBtYXBwaW5nID0gYWVzKHggPSBhbmltYWwsIHkgPSB3ZWlnaHQpKSArXG4gIGdlb21fYm94cGxvdCgpICsgXG4gIGdlb21fdmlvbGluKCkiLCJzY3QiOiJ0ZXN0X2xpYnJhcnlfZnVuY3Rpb24oXCJnZ3Bsb3QyXCIpXG50ZXN0X2dncGxvdChjaGVja19hZXMgPSBUUlVFLCBhZXNfZmFpbF9tc2cgPSBcIk5vdCBxdWl0ZS4gQ2hlY2sgeW91ciBtYXBwaW5nXCIpXG50ZXN0X2Z1bmN0aW9uKFwiZ2VvbV9ib3hwbG90XCIsIGluY29ycmVjdF9tc2cgPSBcIkkgdGhpbmsgeW91J3JlIG1pc3NpbmcgYSBnZW9tIGhlcmUuXCIpXG50ZXN0X2Z1bmN0aW9uKFwiZ2VvbV92aW9saW5cIiwgaW5jb3JyZWN0X21zZyA9IFwiSSB0aGluayB5b3UncmUgbWlzc2luZyBhIGdlb20uXCIpXG5zdWNjZXNzX21zZyhcIkdyZWF0ISBZb3UgY2FuIHNlZSB0aGF0IHRoZSBib3hwbG90IGFuZCB0aGUgdmlvbGluIHBsb3QgY29udHJpYnV0ZSBkaWZmZXJlbnQgbGV2ZWxzIG9mIGRldGFpbCB0byB0aGUgZ3JhcGhcIikifQ==
 </div>
 </div>
 <div id="what-you-learned-in-this-section" class="section level2">

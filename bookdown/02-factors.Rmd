@@ -110,18 +110,91 @@ Given the `pets` `data.frame`, plot a stacked proportional barchart that shows t
 
 Hints: think about what to map to `x`, and what to map to `fill`.
 
-```{r tut=TRUE}
+```{r ex="pets_bar", type="pre-exercise-code", tut=TRUE}
+pets <- data.frame(id = c('C1','C2','D1','D4','D8', 'C4', 'D5', 
+                        'C10', "G4", "C11", "D9", "C6"),
+                   name = factor(c("Morris", "Morris", "Fido", "Mr Bowser", 
+                                 "Fido", "Lady Sheba", "Hubert", "Apples", "Nibbles",
+                                 "Morris", "Winky", "Fido")),
+                   ##weight is in pounds
+                   weight = c(6, 7, 15, 20, 40, 10, 60, 17, 0.2, 10, 11, 6),
+                   animal = factor(c("cat", "cat", "dog", "dog", "dog", 
+                                   "cat", "dog", "cat", "gerbil", "cat", "dog", "cat")),
+                   ##because it's an ordered category, we have to specify 
+                   ##order as the levels argument
+                   ageCategory = ordered(c("0-2", "5-8", "5-8", "3-4", "3-4", 
+                                          "5-8", "0-2", "5-8", "0-2","5-8", "3-4", "5-8"), 
+                                        levels = c("0-2", "3-4", "5-8")),
+                   shotsCurrent = c("No", "Yes", "No", "No", "Yes", "No", 
+                                  "No", "Yes", NA, "No", "No", "Yes"))
+```
+
+```{r ex="pets_bar", type="sample-code", tut=TRUE}
+library(ggplot2)
+
 #Space for your answer here.
 
 ```
 
-```{r tut=TRUE}
-#Intermediate Folks: facet this plot by `shotsCurrent`. 
+```{r ex="pets_bar", type="solution", tut=TRUE}
+library(ggplot2)
+ggplot(data = pets, 
+       mapping = aes(x = ageCategory, fill = animal)) +
+  geom_bar(position = "fill")
+```
+
+```{r ex="pets_bar", type="sct", tut=TRUE}
+test_library_function("ggplot2")
+test_ggplot(check_data = TRUE, check_aes = TRUE, check_geom = TRUE)
+success_msg("Nice!")
+test_error()
+```
+
+**Intermediate Folks: facet this plot by ** `shotsCurrent` **using** `facet_wrap`. 
+
+
+```{r ex="pets_bar_int", type="pre-exercise-code", tut=TRUE}
+pets <- data.frame(id = c('C1','C2','D1','D4','D8', 'C4', 'D5', 
+                        'C10', "G4", "C11", "D9", "C6"),
+                   name = factor(c("Morris", "Morris", "Fido", "Mr Bowser", 
+                                 "Fido", "Lady Sheba", "Hubert", "Apples", "Nibbles",
+                                 "Morris", "Winky", "Fido")),
+                   ##weight is in pounds
+                   weight = c(6, 7, 15, 20, 40, 10, 60, 17, 0.2, 10, 11, 6),
+                   animal = factor(c("cat", "cat", "dog", "dog", "dog", 
+                                   "cat", "dog", "cat", "gerbil", "cat", "dog", "cat")),
+                   ##because it's an ordered category, we have to specify 
+                   ##order as the levels argument
+                   ageCategory = ordered(c("0-2", "5-8", "5-8", "3-4", "3-4", 
+                                          "5-8", "0-2", "5-8", "0-2","5-8", "3-4", "5-8"), 
+                                        levels = c("0-2", "3-4", "5-8")),
+                   shotsCurrent = c("No", "Yes", "No", "No", "Yes", "No", 
+                                  "No", "Yes", NA, "No", "No", "Yes"))
+```
+
+```{r ex="pets_bar_int", type="sample-code", tut=TRUE}
+library(ggplot2)
 
 #Space for your answer here.
 
 ```
 
+```{r ex="pets_bar_int", type="solution", tut=TRUE}
+library(ggplot2)
+ggplot(data = pets, 
+       mapping = aes(x = ageCategory, fill = animal)) +
+  geom_bar(position = "fill") +
+  facet_wrap(facets = ~shotsCurrent)
+```
+
+```{r ex="pets_bar_int", type="sct", tut=TRUE}
+test_library_function("ggplot2")
+test_ggplot(check_data = TRUE, check_facet = TRUE, check_aes = TRUE, 
+            facet_fail_msg = "You didn't map the correct facet. Try again.", 
+            aes_fail_msg = "Not the correct fill aesthetic. Try again.")
+success_msg("Nice!")
+test_error()
+```
 
 ## Boxplots
 
@@ -130,7 +203,8 @@ Boxplots allow us to assess distributions of a continuous variable conditioned o
 What does this tell us? 
 
 ```{r}
-ggplot(pets, aes(x = shotsCurrent, y = weight)) + geom_boxplot()
+ggplot(pets, aes(x = shotsCurrent, y = weight)) + 
+  geom_boxplot()
 ```
 
 ## Violin Plots
@@ -138,25 +212,54 @@ ggplot(pets, aes(x = shotsCurrent, y = weight)) + geom_boxplot()
 Violin plots are another useful way to visualize the data. They provide a more nuanced look at the data. They're a density plot that's mirrored around the y-axis.
 
 ```{r}
-ggplot(pets, aes(x = ageCategory, y = weight, fill = ageCategory)) + geom_violin()
+ggplot(pets, aes(x = ageCategory, y = weight, fill = ageCategory)) + 
+  geom_violin()
 ```
 
 ## Your task: How heavy are our pets?
 
-Visualize `weight` by `animal` type as both a boxplot and a violin plot. What do you conclude? Which kind of animal weighs more on average than the other?
+Visualize `weight` by `animal` type as both a boxplot and a violin plot on the same plot. What do you conclude? Which kind of animal weighs more on average than the other?
 
-```{r tut=TRUE}
-##Space for your answer here
+```{r ex="box_violin", type="pre-exercise-code", tut=TRUE}
+pets <- data.frame(id = c('C1','C2','D1','D4','D8', 'C4', 'D5', 
+                        'C10', "G4", "C11", "D9", "C6"),
+                   name = factor(c("Morris", "Morris", "Fido", "Mr Bowser", 
+                                 "Fido", "Lady Sheba", "Hubert", "Apples", "Nibbles",
+                                 "Morris", "Winky", "Fido")),
+                   ##weight is in pounds
+                   weight = c(6, 7, 15, 20, 40, 10, 60, 17, 0.2, 10, 11, 6),
+                   animal = factor(c("cat", "cat", "dog", "dog", "dog", 
+                                   "cat", "dog", "cat", "gerbil", "cat", "dog", "cat")),
+                   ##because it's an ordered category, we have to specify 
+                   ##order as the levels argument
+                   ageCategory = ordered(c("0-2", "5-8", "5-8", "3-4", "3-4", 
+                                          "5-8", "0-2", "5-8", "0-2","5-8", "3-4", "5-8"), 
+                                        levels = c("0-2", "3-4", "5-8")),
+                   shotsCurrent = c("No", "Yes", "No", "No", "Yes", "No", 
+                                  "No", "Yes", NA, "No", "No", "Yes"))
 
 ```
 
-
-Intermediate challenge: How would we plot both boxplots and a violin plot on the same graph?
-
-```{r tut=TRUE}
-##Space for your answer here
+```{r ex="box_violin", type="sample-code", tut=TRUE}
+library(ggplot2)
 
 ```
+
+```{r ex="box_violin", type="solution", tut=TRUE}
+library(ggplot2)
+ggplot(data = pets, mapping = aes(x = animal, y = weight)) +
+  geom_boxplot() + 
+  geom_violin()
+```
+
+```{r ex="box_violin", type="sct", tut=TRUE}
+test_library_function("ggplot2")
+test_ggplot(check_aes = TRUE, aes_fail_msg = "Not quite. Check your mapping")
+test_function("geom_boxplot", incorrect_msg = "I think you're missing a geom here.")
+test_function("geom_violin", incorrect_msg = "I think you're missing a geom.")
+success_msg("Great! You can see that the boxplot and the violin plot contribute different levels of detail to the graph")
+```
+
 
 ## What you learned in this section
 

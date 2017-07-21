@@ -25,7 +25,7 @@
 <meta name="author" content="Chester Ismay and Ted Laderas">
 
 
-<meta name="date" content="2017-07-11">
+<meta name="date" content="2017-07-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -208,7 +208,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">5.2</span> Let’s build a bar plot of weights</h2>
 <p>To start out, let’s plot the weight for each pet as a bar graph.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> pets, <span class="kw">aes</span>(<span class="dt">x =</span> id, <span class="dt">y =</span> weight)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-53-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-65-1.png" width="\textwidth" /></p>
 </div>
 <div id="sort-by-another-variable-intermediate" class="section level2">
 <h2><span class="header-section-number">5.3</span> Sort by another variable (intermediate)</h2>
@@ -217,7 +217,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pets <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">fct_reorder</span>(id, weight)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> id, <span class="dt">y =</span> weight)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) </code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-54-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-66-1.png" width="\textwidth" /></p>
 </div>
 <div id="plot-in-reverse-alphabetical-order" class="section level2">
 <h2><span class="header-section-number">5.4</span> Plot in Reverse Alphabetical Order</h2>
@@ -227,7 +227,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 pets <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">fct_rev</span>(id)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> id, <span class="dt">y =</span> weight)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-55-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-67-1.png" width="\textwidth" /></p>
 </div>
 <div id="sort-by-frequency" class="section level2">
 <h2><span class="header-section-number">5.5</span> Sort by frequency</h2>
@@ -235,7 +235,7 @@ pets <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mut
 <p>How would we plot these in ascending order?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pets <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">name =</span> <span class="kw">fct_infreq</span>(name)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> name)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-56-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-68-1.png" width="\textwidth" /></p>
 </div>
 <div id="recode-levels-of-a-factor" class="section level2">
 <h2><span class="header-section-number">5.6</span> Recode levels of a factor</h2>
@@ -243,7 +243,7 @@ pets <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mut
 <p>As a silly example, let’s change the names of the levels to the latin genus names for each animal. Note we didn’t change the name of <code>gerbil</code>. What is the result?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pets <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">genus =</span> <span class="kw">fct_recode</span>(animal, <span class="dt">canis =</span> <span class="st">&quot;dog&quot;</span>, <span class="dt">felis =</span> <span class="st">&quot;cat&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> genus)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-57-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-69-1.png" width="\textwidth" /></p>
 </div>
 <div id="group-levels-of-a-factor-together" class="section level2">
 <h2><span class="header-section-number">5.7</span> Group levels of a factor together</h2>
@@ -257,7 +257,7 @@ pets <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mut
                                         <span class="dt">W =</span> <span class="kw">c</span>(<span class="st">&quot;Winky&quot;</span>))
                 ) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> alphabet)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
-<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-58-1.png" width="\textwidth" /></p>
+<p><img src="tidyverse-intro_files/figure-html/unnamed-chunk-70-1.png" width="\textwidth" /></p>
 <div id="forcats-does-way-more" class="section level3">
 <h3><span class="header-section-number">5.7.1</span> <code>forcats</code> does way more!</h3>
 <p>Reference page: <a href="http://forcats.tidyverse.org/" class="uri">http://forcats.tidyverse.org/</a></p>
