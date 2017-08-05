@@ -6,7 +6,6 @@
 tutorial::go_interactive(greedy = FALSE)
 ```
 
-
 ```{r setup4, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -93,15 +92,43 @@ fertilityCountryColumns[1:10, 1:10]
 
 ## Your Task - Who is the most democratic?
 
-Load the `dem_score.csv` dataset in the `data/` folder. Tidy it up. Which countries had the highest democracy score in 2007?
+Load the `dem_score.csv` dataset in the `data/` folder. Tidy it up using `gather()`. Which countries had the highest democracy score in 2007?
 
-Hint: you'll have to use your `dplyr` skills as well.
+Hint: you'll have to use your `dplyr` skills as well. Also, to remove characters, you can use `str_replace(var, "X", "")` in the `stringr` package to do it (what `dplyr` function should you wrap it in?). For more info, check out `?str_replace`.
 
 ```{r tut=TRUE}
-#enter your answer here
-
+library(stringr)
 demScore <- read.csv("data/dem_score.csv")
 
+##process demScore here
+demScoreTidy <- demScore %>%
+
+#show the top 5 categories using top_n()
+topCountries <- demScoreTidy %>%
+  
+topCountries  
+```
+
+```{r ex="gdp", type="solution", tut=TRUE}
+library(stringr)
+demScore <- read.csv("data/dem_score.csv")
+
+demScoreTidy <- demScore %>%
+  gather(key = "year", value = "dem_score", -country) %>%
+  mutate(year = as.numeric(str_replace(year, "X", "")))
+
+topCountries <- demScoreTidy %>%
+  filter(year == 2007) %>%
+  top_n(n = 5, wt = dem_score)
+
+topCountries
+```
+
+```{r ex="gdp", type="sct", tut=TRUE}
+test_library_function("gapminder")
+test_library_function("dplyr")
+test_object("topCountries")
+test_object("demScoreTidy")
 ```
 
 ## Challenge - if that was too easy...
