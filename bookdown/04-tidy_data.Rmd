@@ -96,7 +96,7 @@ Load the `dem_score.csv` dataset in the `data/` folder. Tidy it up using `gather
 
 Hint: you'll have to use your `dplyr` skills as well. Also, to remove characters, you can use `str_replace(var, "X", "")` in the `stringr` package to do it (what `dplyr` function should you wrap it in?). For more info, check out `?str_replace`.
 
-```{r ex="demScore" tut=TRUE}
+```{r ex="demScore" type="sample-code" tut=TRUE}
 library(stringr)
 demScore <- read.csv("data/dem_score.csv")
 
