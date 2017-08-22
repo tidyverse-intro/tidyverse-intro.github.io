@@ -70,12 +70,39 @@ fertilityDataTidy[1:10,]
 
 ## Your Task: using tidy data
 
-How would we find the average fertility within a year? How about from 1860 on?
+How would we find the average fertility within a year? Call the summarized
+data `meanYearRate`.
 
-```{r tut=TRUE}
+```{r ex="fertility", type="pre-exercise-code", tut=TRUE}
+library(tidyr)
+library(dplyr)
+fertilityData <- read.csv("data/total_fertility.csv", check.names = FALSE)
+
+fertilityDataTidy <- 
+  gather(fertilityData, "Year", "fertilityRate", -`Total fertility rate`) %>% 
+  select(Country = `Total fertility rate`, Year, fertilityRate) %>% 
+  #remove na values (there are countries that have no information)
+  filter(!is.na(fertilityRate))
 
 ```
 
+```{r tut=TRUE, ex="fertility", type="sample-code"}
+averageFertility <- fertilityDataTidy %>% 
+  
+averageFertility
+```
+
+```{r, ex="fertility", type="solution", tut=TRUE}
+averageFertility <- fertilityDataTidy %>%
+  group_by(Year) %>% summarize(meanYearRate=mean(fertilityRate))
+
+averageFertility
+```
+
+```{r, ex="fertility", type="sct", tut=TRUE}
+test_object("averageFertility", incorrect_msg = "Not quite. Did you `group_by()` and
+            `summarize()` correctly?")
+```
 ## Making one column into many: `spread()`
 
 Sometimes, you will need to go the other direction: take a long format dataset and make it into a more matrix-like format. This is necessary for such functions such as `heatmap()`.
@@ -96,7 +123,7 @@ Load the `dem_score.csv` dataset in the `data/` folder. Tidy it up using `gather
 
 Hint: you'll have to use your `dplyr` skills as well. Also, to remove characters, you can use `str_replace(var, "X", "")` in the `stringr` package to do it (what `dplyr` function should you wrap it in?). For more info, check out `?str_replace`.
 
-```{r ex="demScore" type="sample-code" tut=TRUE}
+```{r ex="demScore", type="sample-code", tut=TRUE}
 library(stringr)
 demScore <- read.csv("data/dem_score.csv")
 
